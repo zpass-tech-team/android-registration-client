@@ -106,7 +106,7 @@ class _LanguageSelectorState extends State<LanguageSelector> {
   _getDataEntryLabel() {
     String dataEntryLanguage = "";
     context.watch<GlobalProvider>().chosenLang.forEach((element) {
-      String code = globalProvider.languageToCodeMapper[element]!;
+      String code = context.read<GlobalProvider>().selectedLanguage;
       dataEntryLanguage +=
           " / ${AppLocalizations.of(context)!.dataEntryLanguage(code)}";
     });
@@ -116,7 +116,7 @@ class _LanguageSelectorState extends State<LanguageSelector> {
   _getNotificationLabel() {
     String notificationLanguage = "";
     context.watch<GlobalProvider>().chosenLang.forEach((element) {
-      String code = globalProvider.languageToCodeMapper[element]!;
+      String code = context.read<GlobalProvider>().selectedLanguage;
       notificationLanguage +=
           " / ${AppLocalizations.of(context)!.notificationLanguage(code)}";
     });
@@ -128,6 +128,8 @@ class _LanguageSelectorState extends State<LanguageSelector> {
     int minLanguage = globalProvider.minLanguageCount;
     int maxLanguage = globalProvider.maxLanguageCount;
     isMobile = MediaQuery.of(context).orientation == Orientation.portrait;
+
+    debugPrint(context.watch<GlobalProvider>().languages.length.toString());
     return AlertDialog(
       title: Text(
         AppLocalizations.of(context)!.select_language,
@@ -145,6 +147,7 @@ class _LanguageSelectorState extends State<LanguageSelector> {
             // mainAxisSize: MainAxisSize.min,
             children: [
               const Divider(),
+              (context.watch<GlobalProvider>().languages.length > 1) ?
               ListTile(
                 minLeadingWidth: 0,
                 title: Text(
@@ -158,7 +161,8 @@ class _LanguageSelectorState extends State<LanguageSelector> {
                   color: bulletPointColor,
                   size: 15,
                 ),
-              ),
+              ) : const SizedBox.shrink(),
+              (context.watch<GlobalProvider>().languages.length > 1) ?
               ListTile(
                 minLeadingWidth: 0,
                 title: Text(
@@ -173,10 +177,11 @@ class _LanguageSelectorState extends State<LanguageSelector> {
                   color: bulletPointColor,
                   size: 15,
                 ),
-              ),
+              ) : const SizedBox.shrink(),
+              (context.watch<GlobalProvider>().languages.length > 1) ?
               SizedBox(
                 height: 45.h,
-              ),
+              ) : const SizedBox.shrink(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 10.25.w,
