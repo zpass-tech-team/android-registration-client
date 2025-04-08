@@ -1,8 +1,7 @@
 name: Customized Build Android Registration-Client
 
 env:
-  #defaultServerBaseURL: https://api-internal.sandbox.xyz.net/
-  defaultServerBaseURL: https://api-internal-live.grz.gov.zm/
+  defaultServerBaseURL: https://api-internal-ekyc.grz.gov.zm/
 
 on:
   workflow_dispatch:
@@ -10,7 +9,7 @@ on:
       defaultServerBaseURL:
         description: 'Server Base URL'
         required: true
-        default: 'api-internal-live.grz.gov.zm'
+        default: 'api-internal-ekyc.grz.gov.zm'
         type: string
 
 jobs:
