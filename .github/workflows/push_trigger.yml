@@ -22,7 +22,7 @@ jobs:
           npm install
       - name: Updating serverBaseURL.
         run: |
-          find . -type f -name "*build.gradle" -print0 | xargs -0 sed -i "s/api-internal-live.grz.gov.zm/${{ github.event.inputs.defaultServerBaseURL }}/g"
+          find . -type f -name "*build.gradle" -print0 | xargs -0 sed -i "s/api-internal-ekyc.grz.gov.zm/${{ github.event.inputs.defaultServerBaseURL }}/g"
       - name: Build Android Registration-Client
         run: |
           cd client
