@@ -51,6 +51,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk-output
-          #path: ./build/app/outputs/flutter-apk/app-release.apk
-          path: ./build/app/outputs/flutter-apk/reg-client-staging-v2.apk
+          path: ./build/app/outputs/flutter-apk/app-release.apk
           retention-days: 10
